@@ -1,0 +1,16 @@
+{
+    "toppings": [
+      { "name": "Tomatoes", "price": 1, "type": "veg", "isAdded": false },
+      { "name": "Olives", "price": 1.5, "type": "veg", "isAdded": false },
+      { "name": "Mushrooms", "price": 2, "type": "veg", "isAdded": false },
+      { "name": "Pepperoni", "price": 2, "type": "non-veg", "isAdded": false },
+      { "name": "Chicken", "price": 2.5, "type": "non-veg", "isAdded": false },
+      { "name": "Bacon", "price": 3, "type": "non-veg", "isAdded": false }
+    ],
+    "sizes": [
+      { "name": "Small", "price": 5 },
+      { "name": "Medium", "price": 7 },
+      { "name": "Large", "price": 8 },
+      { "name": "Extra Large", "price": 9 }
+    ]
+  }

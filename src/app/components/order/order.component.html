@@ -1,0 +1,81 @@
+<div class="container my-4">
+  <h4>Let's start ordering..</h4>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th rowspan="2">Toppings</th>
+          <th colspan="4" class="text-center">Pizza Size</th>
+        </tr>
+        <tr>
+          <th *ngFor="let size of sizes" class="text-center">
+            {{ size.name }} (${{ size.price }})
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Veg Toppings Section -->
+        <tr class="table-active">
+          <td colspan="5"><strong>Veg Toppings</strong></td>
+        </tr>
+        <tr *ngFor="let topping of vegToppings">
+          <td>{{ topping.name }} (${{ topping.price }})</td>
+          <td *ngFor="let size of sizes" class="text-center">
+            <div class="form-check d-flex justify-content-center">
+              <input class="form-check-input" type="checkbox" id="checkbox-veg-{{ topping.name }}-{{ size.price }}"
+                (change)="onToppingAdded(topping, size.name)" />
+            </div>
+          </td>
+        </tr>
+
+        <!-- Non-Veg Toppings Section -->
+        <tr class="table-active">
+          <td colspan="5"><strong>Non-Veg Toppings</strong></td>
+        </tr>
+        <tr *ngFor="let topping of nonVegToppings">
+          <td>{{ topping.name }} (${{ topping.price }})</td>
+          <td *ngFor="let size of sizes" class="text-center">
+            <div class="form-check d-flex justify-content-center">
+              <input class="form-check-input" type="checkbox" id="checkbox-nonveg-{{ topping.name }}-{{ size.price }}"
+                (change)="onToppingAdded(topping, size.name)" />
+            </div>
+          </td>
+        </tr>
+
+        <!-- Total and Offer Section -->
+        <tr class="table-active">
+          <td colspan="5"><strong>Total and Offers</strong></td>
+        </tr>
+        <tr>
+          <td>Offer</td>
+          <td *ngFor="let pizza of pizzas" class="text-center">
+            {{ pizza.offerName}}
+          </td>
+        </tr>
+        <tr>
+          <td>After Discount</td>
+          <td *ngFor="let pizza of pizzas" class="text-center">
+            <div>
+              <span *ngIf="pizza.isChoosen && selectedPizza?.offerName && selectedPizza?.beforeDiscount"
+                class="text-decoration-line-through text-muted">
+                {{ "$" + selectedPizza?.beforeDiscount }}
+              </span>
+              <br />
+              <span *ngIf="pizza.isChoosen && selectedPizza?.discountedPrice">
+                {{ "$" + selectedPizza?.discountedPrice }}
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Order Summary Section -->
+  <div class="summary my-3">
+    <h5>Order Summary</h5>
+    <p>Total: ${{ totalPrice }}</p>
+    <button class="btn btn-primary" (click)="placeOrder()">Place Order</button> &nbsp;&nbsp;
+    <button class="btn btn-secondary" (click)="cancelOrder()">Cancel Order</button>
+  </div>
+</div>
